@@ -1,0 +1,87 @@
+$bg: #F6FFE0;
+$border: #10222B;
+// https://color.adobe.com/zen-and-tea-color-theme-337112
+
+* { box-sizing: border-box; }
+html { height: 100%; }
+
+body {
+    background-color: $bg;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    > * { display: none; }
+
+    &.ask-name {
+        background-color: #E2F0D6;
+        justify-content: center;
+        align-items: center;
+        .whoami {
+            display: block;
+        }
+    }
+
+    &.pending {
+        justify-content: center;
+        align-items: center;
+        .disconnected {
+            display: flex;
+        }
+    }
+
+    &.chatting {
+        .messages, .deliver { display: block; }
+        .input-line {
+            margin: 0 2rem 2rem 2rem;
+        }
+    }
+
+    .messages {
+        flex: 1;
+        margin: 2rem 2rem 0 2rem;
+        padding: 2rem;
+        border: 1px solid $border;
+        border-bottom: 0;
+        > div {
+            span:first-child {
+                margin-right: 1rem;
+                color: red;
+                &:after {
+                    content: ":";
+                }
+            }
+        }
+    }
+
+    .disconnected {
+        border: 1px solid $border;
+        padding: 2rem;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        align-items: center;
+        color: #E2F0D6;
+        background-color: #10222B;
+        box-shadow: 5px 5px 5px 0px rgba(16, 34, 43, 0.75);
+        .icon {
+            color: red;
+            margin-right: 0.5rem;
+            font-size: 2rem;
+        }
+    }
+
+    .input-line {
+        display: flex;
+        input {
+            flex: 1;
+            padding: 8px;
+            font-size: 1.2rem;
+        }
+        button {
+            font-size: 1.2rem;
+            padding: 0 1rem;
+        }
+
+    }
+}
