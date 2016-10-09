@@ -8,15 +8,17 @@ class InputListener
     constructor: (selector, @callback) ->
         @el = document.querySelector(selector)
         @input  = @el.querySelector("input")
-        @button = @el.querySelector("#{selector} button")
+        @button = @el.querySelector("button")
         @input.addEventListener('keyup', @onKey)
         @button.addEventListener('click', @onClick)
-    onClick: (ev) => @call()
-    onKey:   (ev) => @call() if ev.key == "Enter"
-    stop:         -> @input.removeEventListener('keyup', @onKey)
+    stop: ->
+        @input.removeEventListener('keyup', @onKey)
+        @button.removeEventListener('click', @onClick)
     call: ->
         @callback(@input.value)
         @input.value = ''
+    onKey:   (ev) => @call() if ev.keyCode is 13
+    onClick: (ev) => @call()
 
 
 @Chat.cable.subscriptions.create "ChatChannel",
