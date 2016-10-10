@@ -19,6 +19,7 @@ class InputListener
         @input.value = ''
     onKey:   (ev) => @call() if ev.keyCode is 13
     onClick: (ev) => @call()
+    focus: -> @input.focus()
 
 
 @Chat.cable.subscriptions.create "ChatChannel",
@@ -40,6 +41,7 @@ class InputListener
         document.body.className = "chatting"
         @perform("set_name", {name})
         @msgListener = new InputListener '.deliver', @sendMessage.bind(@)
+        @msgListener.focus()
 
     sendMessage: (message) ->
         @perform("send_message", {message})
